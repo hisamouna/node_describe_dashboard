@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "github.com/hisamouna/node_describe_dashboard/pkg/server/node";
+
+package node;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+message NodesResponse {
+  repeated Node nodes = 1;
+}
+
+message Node {
+  string name = 1;
+  repeated Pod pods = 2;
+}
+
+message Pod {
+  string namespace = 1;
+  string name = 2;
+}
+
+service NodeService {
+  rpc DescribeNodes(google.protobuf.Empty) returns (NodesResponse) {
+    option (google.api.http) = {
+      get: "/v1/node/describe"
+    };
+  }
+}
