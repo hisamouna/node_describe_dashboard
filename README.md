@@ -20,6 +20,6 @@
 └─> go run cmd/server/main.go
 2021/09/13 23:22:10 Serving gRPC on 0.0.0.0::8080
 
-└─> go run cmd/server/main.go
-2021/09/13 23:22:10 Serving gRPC on 0.0.0.0::8080
+└─> go run cmd/gateway/main.go
+2021/09/13 23:22:15 Serving gRPC-Gateway on http://0.0.0.0:8090
 ```
