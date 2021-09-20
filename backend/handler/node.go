@@ -14,6 +14,7 @@ type NodeHandler struct {
 }
 
 func (handler *NodeHandler) DescribeNodes(ctx context.Context, in *emptypb.Empty) (*node.NodesResponse, error) {
+	fmt.Println("handler.DescribeNodes")
 	kc, err := kube.NewClient("kind_config")
 	if err != nil {
 		return nil, fmt.Errorf("DescribeNode(kueb.NewClient): %v", err)

@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/hisamouna/node_describe_dashboard/handler"
 	"github.com/hisamouna/node_describe_dashboard/pkg/server/node"
 	"google.golang.org/grpc"
 )
@@ -29,15 +30,23 @@ func main() {
 	}
 
 	gwmux := runtime.NewServeMux()
+	mux := http.NewServeMux()
+
 	err = node.RegisterNodeServiceHandler(context.Background(), gwmux, conn)
 	if err != nil {
 		log.Fatalf("Failed to register gateway: %v", err)
 	}
+	mux.HandleFunc("/", gwmux.ServeHTTP)
 
-	gwServer := &http.Server{
-		Addr:    port,
-		Handler: gwmux,
-	}
+	/*
+		gwServer := &http.Server{
+			Addr:    port,
+			Handler: gwmux,
+		}
+		log.Printf("Serving gRPC-Gateway on http://0.0.0.0%s", port)
+		log.Fatal(gwServer.ListenAndServe())
+	*/
+
 	log.Printf("Serving gRPC-Gateway on http://0.0.0.0%s", port)
-	log.Fatal(gwServer.ListenAndServe())
+	log.Fatal(http.ListenAndServe(port, handler.AllowCORS(mux)))
 }
