@@ -21,7 +21,7 @@ func (handler *NodeHandler) DescribeNodes(ctx context.Context, in *emptypb.Empty
 	}
 	nodes, err := kc.GetNodes()
 	if err != nil {
-		return nil, fmt.Errorf("DescribeNode(kueb.GetNodes): %v", err)
+		return nil, fmt.Errorf("GetNodes(kueb.GetNodes): %v", err)
 	}
 
 	var response = &node.NodesResponse{}
