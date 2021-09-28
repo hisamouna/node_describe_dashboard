@@ -1,0 +1,19 @@
+.node {
+  border: 5px solid rgb(207, 221, 233);
+  margin-left: 3%;
+  margin-top: 3%;
+  width: 12rem;
+}
+
+.node-name-text {
+  background-color:rgb(21, 116, 116);
+  color:rgb(207, 221, 233);
+  padding: 0.3rem;
+}
+
+.pods {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0.1rem;
+}
